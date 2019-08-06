@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.QianCDMapper">
+
+    <!-- type 属性的值是实体类类名，可以直接写类名不加包名，例如 ChengPeople ，但是仅限于 pojo 包下的类，做了别名配置。否则必须是别名加上包名 -->
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="id" column="CD_id"></id>
+        <result property="phone" column="user_phone"></result>
+        <result property="name" column="CD_name"></result>
+        <result property="brand" column="CD_brand"></result>
+        <result property="price" column="CD_price"></result>
+        <result property="type" column="CD_type"></result>
+        <result property="install" column="CD_install"></result>
+        <result property="contain" column="CD_contain"></result>
+        <result property="interfacetype" column="CD_interfaceType"></result>
+        <result property="img" column="CD_img"></result>
+    </resultMap>
+
+    <!-- 快捷键 alt+/ 可以看到很多标签，一个标签对应接口的一个方法，id属性的值必须是方法名 ,resultMap 属性的值是对应 resultMap 标签的 id -->
+    <select id="selectAll" parameterType= "QianCD" resultMap="json">
+        select * from qian_CD where 1=1
+        <choose>
+            <when test="CD_name !=null and CD_name !=''">
+                and CD_name = #{name}
+            </when>
+
+            <when test="CD_brand !=null and CD_brand !=''">
+                and CD_brand = #{brand}
+            </when>
+
+            <when test="CD_price !=null and CD_price !=''">
+                and CD_price = #{price}
+            </when>
+
+            <when test="CD_account !=null and CD_account !=''">
+                and CD_type=#{type}
+            </when>
+
+            <when test="CD_type !=null and CD_type !=''">
+                and CD_install=#{install}
+            </when>
+
+            <when test="CD_MHZ !=null and CD_MHZ !=''">
+                and CD_contain=#{contain}
+            </when>
+
+            <when test="CD_aircooling !=null and CD_aircooling !=''">
+               and CD_interfaceType=#{interfacetype}
+            </when>
+        </choose>
+    </select>
+
+    <insert id="insertQianCD" parameterType= "QianCD">
+    	insert into qian_CD (user_phone,CD_name,CD_brand,CD_price, CD_type,CD_install,CD_contain,CD_interfaceType,CD_img)
+    	values(#{phone},#{name},#{brand},#{price},#{type},#{install},#{contain},#{interfacetype},#{img})
+    </insert>
+
+    <update id="updateQianCD" parameterType= "QianCD">
+    	update qian_CD set CD_name = #{name}, CD_brand = #{brand}, CD_price = #{price}, CD_type=#{type},CD_install=#{install}, CD_contain=#{contain}
+            CD_interfaceType=#{interfacetype}, CD_img=#{img}
+    </update>
+
+    <delete id="deleteQianCDById">
+    	delete from qian_CD where user_phone=#{phone}and CD_id=#{id}
+    </delete>
+</mapper>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.WangMonitorMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="id" column="mo_no"></id>
+        <id property="phone" column="phone"></id>
+        <result property="name" column="mo_name"></result>
+        <result property="brand" column="mo_brand"></result>
+        <result property="price" column="mo_price"></result>
+        <result property="size" column="mo_size"></result>
+        <result property="proportion" column="mo_proportion"></result>
+        <result property="resolution" column="mo_resolution"></result>
+        <result property="img" column="mo_img"></result>
+        <result property="grade" column="mo_grade"></result>
+    </resultMap>
+    <select id="selectAll" parameterType="WangMonitor" resultMap="json">
+        select * from wang_monitor where 1=1
+        <choose>
+            <when test="name !=null and name!=''">
+                and mo_name =#{name}
+            </when>
+            <when test="brand !=null and brand!=''">
+                and mo_brand =#{brand}
+            </when>
+
+            <when test="price!=null and price!=''">
+                and mo_price = #{price}
+            </when>
+            <when test="size!=null and size!=''">
+                and mo_size = #{size}
+            </when>
+            <when test="proportion!=null and proportion!=''">
+                and mo_proportion = #{proportion}
+            </when>
+            <when test="resolution!=null and resolution!=''">
+                and mo_resolution = #{resolution}
+            </when>
+
+        </choose>
+    </select>
+
+    <insert id="insertInto" parameterType="WangMonitor">
+        insert into wang_monitor (phone,mo_name,mo_brand,mo_price,mo_size,mo_proportion,mo_resolution,mo_price)
+        values (#{phone},#{name},#{brand},#{price},#{size},#{proportion},#{resolution},#{price},#{img})
+    </insert>
+
+    <update id="update" parameterType="XuBluetooth">
+        update wang_monitor set phone=#{phone},mo_name=#{name},mo_brand=#{brand},mo_price=#{price},mo_size=#{size},
+        mo_proportion=#{proportion},mo_resolution=#{resolution},mo_price=#{price}
+    </update>
+
+    <delete id="delete">
+        delete from wang_monitor where mo_name=#{name}
+    </delete>
+</mapper>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.XuBluetoothMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="id" column="ba_id"></id>
+        <id property="phone" column="lg_phone"></id>
+        <result property="name" column="ba_name"></result>
+        <result property="img" column="ba_img"></result>
+        <result property="brand" column="ba_brand"></result>
+        <result property="price" column="ba_price"></result>
+        <result property="img" column="ba_img"></result>
+
+    </resultMap>
+    <select id="selectAll" parameterType="XuBluetooth" resultMap="json">
+        select * from xu_bluetooth where 1=1
+        <choose>
+            <when test="name !=null and name!=''">
+                and ba_name =#{name}
+            </when>
+            <when test="brand !=null and brand!=''">
+                and ba_brand =#{brand}
+            </when>
+
+            <when test="price!=null and price!=''">
+                and ba_price = #{price}
+            </when>
+        </choose>
+    </select>
+    
+    <insert id="insertInto" parameterType="XuBluetooth">
+        insert into xu_bluetooth (lg_phone,ba_name,ba_brand,ba_price,ba_img) values (#{phone},#{name},#{brand},#{price},#{img})
+    </insert>
+
+    <update id="update" parameterType="XuBluetooth">
+        update xu_bluetooth set lg_phone=#{phone},ba_name=#{name},ba_brand=#{brand},ba_price=#{price},ba_img=#{img}
+    </update>
+
+    <delete id="delete">
+        delete from xu_bluetooth where lg_phone=#{phone} and ba_id=#{id}
+    </delete>
+</mapper>

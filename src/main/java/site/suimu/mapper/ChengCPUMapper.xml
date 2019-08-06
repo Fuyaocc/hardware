@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--slotTypespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.ChengCPUMapper">
+
+    <!-- type 属性的值是实体类类名，可以直接写类名不加包名，例如 ChengPeople ，但是仅限于 pojo 包下的类，做了别名配置。否则必须是别名加上包名 -->
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="cpuId" column="cpu_id"></id>
+        <result property="phone" column="lg_phone"></result>
+        <result property="brand" column="cpu_brand"></result>
+        <result property="price" column="cpu_price"></result>
+        <result property="set" column="cpu_set"></result>
+        <result property="suitableType" column="cpu_suitable_type"></result>
+        <result property="coreCounts" column="cpu_core_counts"></result>
+        <result property="slotType" column="cpu_slot_type"></result>
+        <result property="threadCounts" column="cpu_thread_counts"></result>
+        <result property="imageUrl" column="cpu_image_url"></result>
+        <result property="grade" column="cpu_grade"></result>
+        <result property="link" column="cpu_link"></result>
+    </resultMap>
+
+    <!-- 快捷键 alt+/ 可以看到很多标签，一个标签对应接口的一个方法，id属性的值必须是方法名 ,resultMap 属性的值是对应 resultMap 标签的 id -->
+    <select id="selectCPU" resultMap="json" parameterType="ChengCPU">
+        select * from cheng_cpu where 1=1
+        <choose>
+            <when test="brand !=null and brand !=''">
+                and cpu_brand like concat('%',#{brand},'%')
+            </when>
+
+            <when test="set !=null and set !=''">
+                and cpu_set = #{set}
+            </when>
+
+            <when test="price !=null and price !=''">
+                and cpu_price like concat ('%',#{price},'%')
+            </when>
+
+            <when test="suitableType !=null and suitableType !=''">
+                and cpu_suitable_type = #{suitableType}
+            </when>
+
+            <when test="coreCounts !=null and coreCounts !=''">
+                and cpu_core_counts like concat ('%',#{coreCounts},'%')
+            </when>
+
+            <when test="slotType !=null and slotType !=''">
+                and cpu_slot_type like concat ('%',#{slotType},'%')
+            </when>
+
+            <when test="threadCounts !=null and threadCounts !=''">
+                and cpu_thread_counts like concat ('%',#{threadCounts},'%')
+            </when>
+        </choose>
+    </select>
+
+
+</mapper>

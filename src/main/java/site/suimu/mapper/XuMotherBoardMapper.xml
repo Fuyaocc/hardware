@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.XuMotherBoardMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="id" column="mb_id"></id>
+        <id property="phone" column="lg_phone"></id>
+        <result property="name" column="mb_name"></result>
+        <result property="brand" column="mb_brand"></result>
+        <result property="price" column="mb_price"></result>
+        <result property="chip" column="mb_chip"></result>
+        <result property="cpuslot" column="mb_cpu_slot"></result>
+        <result property="version" column="mb_version"></result>
+        <result property="memorytype" column="mb_memory_type"></result>
+        <result property="characteristic" column="mb_characteristic"></result>
+        <result property="img" column="mb_img"></result>
+
+    </resultMap>
+    <select id="selectAll" parameterType="XuMotherBoard" resultMap="json">
+        select * from xu_motherboard where 1=1
+        <choose>
+            <when test="name !=null and name!=''">
+                and mb_name =#{name}
+            </when>
+            <when test="brand !=null and brand!=''">
+                and mb_brand =#{brand}
+            </when>
+
+            <when test="price!=null and price!=''">
+                and mb_price = #{price}
+            </when>
+            <when test="chip!=null and chip!=''">
+                and mb_chip = #{chip}
+            </when>
+            <when test="cpuslot!=null and cpuslot!=''">
+                and mb_cpu_slot = #{cpuslot}
+            </when>
+            <when test="version!=null and version!=''">
+                and mb_version = #{version}
+            </when>
+            <when test="memorytype!=null and memorytype!=''">
+                and mb_memory_type = #{memorytype}
+            </when>
+            <when test="characteristic!=null and characteristic!=''">
+                and mb_characteristic = #{characteristic}
+            </when>
+        </choose>
+    </select>
+
+    <insert id="insertInto" parameterType="XuMotherBoard">
+        insert into xu_motherboard (lg_phone,mb_name,mb_brand,mb_price,mb_chip,mb_cpu_slot,mb_version,mb_memory_type,mb_characteristic,mb_img)
+        values (#{phone},#{name},#{brand},#{price},#{chip},#{cpuslot},#{version},#{memorytype},#{characteristic},#{img})
+    </insert>
+
+    <update id="update" parameterType="XuMotherBoard">
+        update xu_motherboard set lg_phone=#{phone},mb_name=#{name},mb_brand=#{brand},mb_price=#{price},mb_chip=#{chip},
+        mb_cpu_slot=#{cpuslot},mb_version=#{version},mb_memory_type=#{memorytype},mb_characteristic=#{characteristic},mb_img=#{img}
+    </update>
+
+    <delete id="delete">
+        delete from xu_motherboard where mb_name=#{name}
+    </delete>
+
+</mapper>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.XuNetworkCardMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="id" column="nc_id"></id>
+        <id property="phone" column="lg_phone"></id>
+        <result property="name" column="nc_name"></result>
+        <result property="brand" column="nc_brand"></result>
+        <result property="price" column="nc_price"></result>
+        <result property="nettype" column="nc_network_type"></result>
+        <result property="rate" column="nc_transmission_rate"></result>
+        <result property="bustype" column="nc_bus_type"></result>
+        <result property="netitertype" column="nc_network_interface_type"></result>
+        <result property="img" column="nc_img"></result>
+
+    </resultMap>
+    <select id="selectAll" parameterType="XuNetworkCard" resultMap="json">
+        select * from xu_networkcard where 1=1
+        <choose>
+            <when test="name !=null and name!=''">
+                and nc_name =#{name}
+            </when>
+
+            <when test="brand !=null and brand!=''">
+                and nc_brand =#{brand}
+            </when>
+
+            <when test="price!=null and price!=''">
+                and nc_price = #{price}
+            </when>
+            <when test="nettype!=null and nettype!=''">
+                and nc_network_type = #{nettype}
+            </when>
+            <when test="rate!=null and rate!=''">
+                and nc_transmission_rate = #{rate}
+            </when>
+            <when test="bustype!=null and bustype!=''">
+                and nc_bus_type = #{bustype}
+            </when>
+            <when test="netitertype!=null and netitertype!=''">
+                and nc_network_interface_type = #{netitertype}
+            </when>
+        </choose>
+    </select>
+
+    <insert id="insertInto" parameterType="XuNetworkCard">
+        insert into xu_networkcard(lg_phone,nc_name,nc_brand,nc_price,nc_network_type,nc_transmission_rate,nc_bus_type,nc_network_interface_type,nc_img)
+        values (#{phone},#{name},#{brand},#{price},#{nettype},#{rate},#{bustype},#{netitertype},#{img})
+    </insert>
+
+    <update id="update" parameterType="XuNetworkCard">
+        update xu_networkcard set lg_phone=#{phone},nc_name=#{name},nc_brand=#{brand},nc_price=#{price},nc_network_type=#{nettype},
+        nc_transmission_rate=#{rate},nc_bus_type=#{bustype},nc_network_interface_type=#{netitertype},nc_img=#{img}
+    </update>
+
+    <delete id="delete">
+        delete from xu_networkcard where lg_phone=#{phone} and nc_id=#{id}
+    </delete>
+
+</mapper>

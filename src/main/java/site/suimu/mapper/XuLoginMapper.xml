@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.XuLoginMapper">
+
+    <!-- type 属性的值是实体类类名，可以直接写类名不加包名，例如 ChengPeople ，但是仅限于 pojo 包下的类，做了别名配置。否则必须是别名加上包名 -->
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="phone" column="lg_phone"></id>
+        <result property="password" column="lg_password"></result>
+    </resultMap>
+
+
+    <!-- 快捷键 alt+/ 可以看到很多标签，一个标签对应接口的一个方法，id属性的值必须是方法名 ,resultMap 属性的值是对应 resultMap 标签的 id -->
+    <select id="selectOne" resultMap="json">
+        select * from xu_login where lg_phone=#{phone} and lg_password=#{password}
+    </select>
+</mapper>
+

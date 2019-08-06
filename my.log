@@ -1,0 +1,27 @@
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 15651665893(String), xky123456(String) 
+<==      Total: 1 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 6 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 6 
+==>  Preparing: select * from cheng_cpu where 1=1  
+==> Parameters:  
+<==      Total: 0 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 6 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 15651665893(String), xky123456(String) 
+<==      Total: 1 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 6 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 15651665893(String), xky123456(String) 
+<==      Total: 1 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 15651665893(String), xky123456(String) 
+<==      Total: 1 

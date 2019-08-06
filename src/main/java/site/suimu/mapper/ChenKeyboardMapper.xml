@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="site.suimu.mapper.ChenKeyboardMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="no" column="kb_no"></id>
+        <id property="phone" column="phone"></id>
+        <result property="brand" column="kb_brand"></result>
+        <result property="price" column="kb_price"></result>
+        <result property="position" column="kb_position"></result>
+        <result property="connmethod" column="kb_conn_method"></result>
+        <result property="inter" column="kb_interface"></result>
+        <result property="button" column="kb_button"></result>
+        <result property="backlight" column="kb_backlight"></result>
+        <result property="name" column="kb_name"></result>
+        <result property="name" column="kb_name"></result>
+        <result property="name" column="kb_name"></result>
+        <result property="name" column="kb_name"></result>
+    </resultMap>
+    <select id="select" parameterType="ChenKeyboard" resultMap="json">
+    	select * from chen_keyboard where 1=1
+    <choose>
+    	<when test="brand !=null and brand !=''">
+    		and kb_brand like concat('%',#{brand},'%')
+    	</when>
+    	
+    	<when test="price !=null and price !=''">
+    		and kb_price = #{price}
+    	</when>
+    	
+    	<when test="position !=null and position !=''">
+    		and kb_position like concat ('%',#{position},'%')
+    	</when>
+    	
+    	<when test="connmethod !=null and connmethod !=''">
+    		and kb_conn_method = #{connmethod}
+    	</when>
+    	
+    	<when test="infa !=null and infa !=''">
+    		and kb_interface like concat ('%',#{inter},'%')
+    	</when>
+    	
+    	<when test="button !=null and button !=''">
+    		and kb_button like concat ('%',#{button},'%')
+    	</when>
+    	
+    	<when test="backlight !=null and backlight !=''">
+    		and kb_backlight like concat ('%',#{backlight},'%')
+    	</when>
+    	
+    	<when test="name !=null and name !=''">
+    		and kb_name like concat ('%',#{name},'%')
+    	</when>
+    </choose>
+    </select>
+    
+    <insert id="insert" parameterType="ChenKeyboard">
+    	insert into chen_keyboard (phone,kb_brand,kb_price,kb_position,kb_conn_method,kb_interface,kb_button,
+    		kb_backlight,kb_name) values (#{phone},#{brand},#{price},#{position},#{connmethod},#{inter},#{button},
+    		#{backlight},#{name})
+    </insert>
+    
+    <update id="update" parameterType="ChenKeyboard">
+    	update chen_keyboard set phone=#{phone},kb_brand=#{brand},kb_price=#{price},kb_position=#{position}
+    		kb_conn_method=#{connmethod},kb_interface=#{inter},kb_button=#{button},kb_backlight=#{backlight},kb_name=#{name}
+    </update>
+    
+    <delete id="delete">
+    	delete from chen_keyboard where kb_no=#{no} and phone=#{phone}
+    </delete>
+</mapper>

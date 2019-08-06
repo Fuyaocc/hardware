@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="site.suimu.mapper.ChenDisplayChipMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="no" column="dc_no"></id>
+        <id property="phone" column="phone"></id>
+        <result property="brand" column="dc_brand"></result>
+        <result property="price" column="dc_price"></result>
+        <result property="name" column="dc_name"></result>
+        <result property="link" column="dc_link"></result>
+        <result property="img" column="dc_url"></result>
+        <result property="score" column="dc_score"></result>
+    </resultMap>
+    <select id="select" parameterType="ChenDisplayChip" resultMap="json">
+    	select * from chen_display_chip where 1=1
+    <choose>
+    	<when test="brand !=null and brand !=''">
+    		and dc_brand like concat('%',#{brand},'%')
+    	</when>
+    	
+    	<when test="dc_type !=null and dc_type !=''">
+    		and dc_type = #{type}
+    	</when>
+    	
+    	<when test="price !=null and price !=''">
+    		and dc_price like concat ('%',#{price},'%')
+    	</when>
+    	
+    	<when test="name !=null and name !=''">
+    		and dc_name = #{name}
+    	</when>
+    </choose>
+    </select>
+    
+    <insert id="insert" parameterType="ChenDisplayChip">
+    	insert into chen_disk (phone,dc_brand,dc_type,dc_price,dc_name) values (#{phone},#{brand},#{type},#{price}
+    		,#{name})
+    </insert>
+    
+    <update id="update" parameterType="ChenDisplayChip">
+    	update chen_disk set dc_brand=#{brand},dc_type=#{type},dc_price=#{price},dc_name=#{name}
+    </update>
+    
+    <delete id="delete">
+    	delete from chen_disk where dc_no=#{no} and phone=#{phone}
+    </delete>
+</mapper>

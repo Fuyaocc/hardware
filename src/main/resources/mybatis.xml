@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+<!-- 开启日志记录 -->
+	<settings>
+		<setting name="logImpl" value="LOG4J" />
+	</settings>
+	<!-- 给实体类起别名，别名即类名 -->
+	<typeAliases>
+		<package name="site.suimu.pojo" />
+	</typeAliases>
+	<!-- default引用enviroment的id,当前使用的环境 -->
+	<environments default="default">
+		<environment id="default">
+			<transactionManager type="JDBC" />
+			<dataSource type="POOLED">
+				<property name="driver" value="com.mysql.jdbc.Driver" />
+				<property name="url" value="jdbc:mysql://47.100.116.143:3306/hardware" />
+				<property name="username" value="hardware" />
+				<property name="password" value="123456" />
+			</dataSource>
+		</environment>
+	</environments>
+
+	<!-- 扫描接口和文件 -->
+	<mappers>
+		<!-- <mapper resource="site/suimu/Mapper/PeopleMapper.xml" /> -->
+		<package name="site.suimu.mapper"/>
+	</mappers>
+</configuration>

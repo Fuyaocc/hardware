@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="site.suimu.mapper.ChenSoundCardMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="no" column="sc_no"></id>
+        <id property="phone" column="phone"></id>
+        <result property="brand" column="sc_brand"></result>
+        <result property="system" column="sc_system"></result>
+        <result property="install" column="sc_install"></result>
+        <result property="bus" column="sc_bus"></result>
+        <result property="type" column="sc_type"></result>
+        <result property="name" column="sc_name"></result>
+        <result property="price" column="sc_price"></result>
+        <result property="img" column="sc_url"></result>
+        <result property="link" column="sc_link"></result>
+        <result property="score" column="sc_score"></result>
+    </resultMap>
+    <select id="select" parameterType="ChenKeyboard" resultMap="json">
+    	select * from chen_sound_card where 1=1
+    <choose>
+    	<when test="brand !=null and brand !=''">
+    		and sc_brand like concat('%',#{brand},'%')
+    	</when>
+    	
+    	<when test="system !=null and system !=''">
+    		and sc_system = #{system}
+    	</when>
+    	
+    	<when test="install !=null and install !=''">
+    		and sc_install like concat ('%',#{install},'%')
+    	</when>
+    	
+    	<when test="bus !=null and bus !=''">
+    		and sc_bus = #{bus}
+    	</when>
+    	
+    	<when test="type !=null and type !=''">
+    		and sc_type like concat ('%',#{type},'%')
+    	</when>
+    	
+    	<when test="name !=null and name !=''">
+    		and sc_name like concat ('%',#{name},'%')
+    	</when>
+    	
+    	<when test="price !=null and price !=''">
+    		and sc_price like concat ('%',#{price},'%')
+    	</when>
+    </choose>
+    </select>
+    
+    <insert id="insert" parameterType="ChenKeyboard">
+    	insert into chen_sound_card (phone,sc_brand,sc_system,sc_install,sc_bus,sc_type,sc_name,
+    		sc_price) values (#{phone},#{brand},#{system},#{install},#{bus},#{type},#{name},
+    		#{price})
+    </insert>
+    
+    <update id="update" parameterType="ChenKeyboard">
+    	update chen_sound_card set phone=#{phone},sc_brand=#{brand},sc_system=#{system},sc_install=#{install}
+    		sc_bus=#{bus},sc_type=#{type},sc_name=#{name},sc_price=#{price}
+    </update>
+    
+    <delete id="delete">
+    	delete from chen_sound_card where sc_no=#{no} and phone=#{phone}
+    </delete>
+</mapper>

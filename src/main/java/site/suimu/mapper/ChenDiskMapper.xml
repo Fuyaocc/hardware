@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="site.suimu.mapper.ChenDiskMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="no" column="disk_no"></id>
+        <id property="phone" column="phone"></id>
+        <result property="brand" column="disk_brand"></result>
+        <result property="type" column="disk_type"></result>
+        <result property="capacity" column="disk_capacity"></result>
+        <result property="price" column="disk_price"></result>
+        <result property="cache" column="disk_cache"></result>
+        <result property="rospeed" column="disk_rotating_speed"></result>
+        <result property="name" column="disk_name"></result>
+        <result property="intype" column="disk_interface_type"></result>
+        <result property="img" column="disk_url"></result>
+        <result property="score" column="disk_score"></result>
+        <result property="link" column="disk_link"></result>
+    </resultMap>
+    <select id="select" parameterType="ChenDisk" resultMap="json">
+    	select * from chen_disk where 1=1
+    <choose>
+    	<when test="brand !=null and brand !=''">
+    		and disk_brand like concat('%',#{brand},'%')
+    	</when>
+    	
+    	<when test="type !=null and type !=''">
+    		and disk_type = #{type}
+    	</when>
+    	
+    	<when test="price !=null and price !=''">
+    		and disk_price like concat ('%',#{price},'%')
+    	</when>
+    	
+    	<when test="capacity !=null and capacity !=''">
+    		and disk_capacity = #{capacity}
+    	</when>
+    	
+    	<when test="cache !=null and cache !=''">
+    		and disk_cache like concat ('%',#{cache},'%')
+    	</when>
+    	
+    	<when test="name !=null and name !=''">
+    		and disk_name like concat ('%',#{name},'%')
+    	</when>
+    	
+    	<when test="rospeed !=null and rospeed !=''">
+    		and disk_rotating_speed like concat ('%',#{rospeed},'%')
+    	</when>
+    	
+    	<when test="intype !=null and intype ! =''">
+    		and disk_interface_type like concat ('%',#{intype},'%')
+    	</when>
+    </choose>
+    </select>
+    
+    <insert id="insert" parameterType="ChenDisk">
+    	insert into chen_disk (phone,disk_brand,disk_type,disk_capacity,disk_price,disk_cache,disk_rotating_speed,
+    		disk_name,disk_interface_type) values (#{phone},#{brand},#{type},#{capacity},#{price},#{cache},#{rospeed},
+    		#{name},#{intype})
+    </insert>
+    
+    <update id="update" parameterType="ChenDisk">
+    	update chen_disk set phone=#{phone},disk_brand=#{brand},disk_type=#{type},disk_capacity=#{capacity},disk_price=#{price}
+    		disk_cache=#{cahce},disk_rotating_speed=#{rospeed},disk_name=#{name},disk_interface_type=#{intype}
+    </update>
+    
+    <delete id="delete">
+    	delete from chen_disk where disk_no=#{no} and phone=#{phone}
+    </delete>
+</mapper>

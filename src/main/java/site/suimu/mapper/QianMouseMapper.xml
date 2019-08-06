@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.QianMouseMapper">
+
+    <!-- type 属性的值是实体类类名，可以直接写类名不加包名，例如 ChengPeople ，但是仅限于 pojo 包下的类，做了别名配置。否则必须是别名加上包名 -->
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="id" column="Mou_id"></id>
+        <result property="phone" column="user_phone"></result>
+        <result property="name" column="Mou_name"></result>
+        <result property="brand" column="Mou_brand"></result>
+        <result property="price" column="Mou_price"></result>
+        <result property="type" column="Mou_type"></result>
+        <result property="size" column="Mou_size"></result>
+        <result property="work" column="Mou_work"></result>
+        <result property="connection" column="Mou_connection"></result>
+        <result property="inter" column="Mou_inter"></result>
+        <result property="img" column="Mou_img"></result>
+    </resultMap>
+
+    <!-- 快捷键 alt+/ 可以看到很多标签，一个标签对应接口的一个方法，id属性的值必须是方法名 ,resultMap 属性的值是对应 resultMap 标签的 id -->
+    <select id="selectAll"  resultMap="json">
+        select * from qian_Mouse where 1=1
+        <choose>
+            <when test="Mou_name !=null and Mou_name !=''">
+                and Mou_name = #{name}
+            </when>
+
+            <when test="Mou_brand !=null and Mou_brand !=''">
+                and Mou_brand = #{brand}
+            </when>
+
+            <when test="Mou_price !=null and Mou_price !=''">
+                and Mou_price = #{price}
+            </when>
+
+            <when test="Mou_type !=null and Mou_type !=''">
+                and Mou_type=#{type}
+            </when>
+
+            <when test="Mou_size !=null and Mou_size!=''">
+                and Mou_size=#{size}
+            </when>
+
+            <when test="Mou_work !=null and Mou_work !=''">
+                and Mou_work=#{work}
+            </when>
+
+            <when test="Mou_connection !=null and Mou_connection !=''">
+                and Mou_connection=#{connection}
+            </when>
+
+            <when test="Mou_inter !=null and Mou_inter !=''">
+                and Mou_inter=#{inter}
+            </when>
+        </choose>
+    </select>
+
+    <insert id="insertQianMouse" parameterType= "QianMouse">
+    	insert into qian_Mouse (user_phone,Mou_name,Mou_brand,Mou_price, Mou_type,Mou_size,Mou_work,Mou_connection,Mou_inter,Mou_img)
+    	values(#{phone},#{name},#{brand},#{price},#{type},#{size},#{work},#{connection},#{inter},#{img})
+    </insert>
+
+    <update id="updateQianMouse" parameterType= "QianMouse">
+    	update qian_Mouse set Mou_brand = #{brand},Mou_price = #{price}, Mou_type=#{type},Mou_size=#{size},Mou_work=#{work}
+            Mou_connection=#{connection}, Mou_inter=#{inter},Mou_img=#{img}
+    </update>
+
+    <delete id="deleteQianMouseById">
+    	delete from qian_Mouse where user_phone=#{phone}and Mou_id=#{id}
+    </delete>
+</mapper>

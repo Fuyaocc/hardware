@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="site.suimu.mapper.WangCameraMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="no" column="ca_no"></id>
+        <id property="phone" column="phone"></id>
+        <result property="brand" column="ca_brand"></result>
+        <result property="type" column="ca_type"></result>
+        <result property="apptype" column="ca_appropriate_type"></result>
+        <result property="price" column="ca_price"></result>
+        <result property="pixel" column="ca_pixel"></result>
+        <result property="cha" column="ca_characteristic"></result>
+        <result property="name" column="ca_name"></result>
+        <result property="link" column="ca_link"></result>
+        <result property="img" column="ca_img"></result>
+        <result property="score" column="ca_score"></result>
+    </resultMap>
+    <select id="selectAll" parameterType="WangCamera" resultMap="json">
+    	select * from chen_camera where 1=1
+    <choose>
+    	<when test="brand !=null and brand!=''">
+    		and ca_brand like concat('%',#{brand},'%')
+    	</when>
+    	
+    	<when test="type!=null and type!=''">
+    		and ca_type = #{type}
+    	</when>
+    	
+    	<when test="price !=null and price !=''">
+    		and ca_appropriate_type like concat ('%',#{price},'%')
+    	</when>
+    	
+    	<when test="pixel !=null and pixel !=''">
+    		and ca_appropriate_type = #{pixel}
+    	</when>
+    	
+    	<when test="characteristic !=null and characteristic !=''">
+    		and ca_characteristic like concat ('%',#{cha},'%')
+    	</when>
+    	
+    	<when test="name !=null and name !=''">
+    		and ca_name like concat ('%',#{name},'%')
+    	</when>
+    </choose>
+    </select>
+    
+    <insert id="insert" parameterType="WangCamera">
+    	insert into chen_camera (phone,ca_brand,ca_type,ca_appropriate_type,ca_price,ca_pixel,ca_characteristic,
+    		ca_name) values (#{phone},#{brand},#{type},#{apptype},#{price},#{pixel},#{cha},#{name})
+    </insert>
+    
+    <update id="update" parameterType="WangCamera">
+    	update chen_camera set ca_brand=#{brand},ca_type=#{type},ca_appropriate_type=#{apptype},ca_price=#{price}
+    		ca_pixel=#{pixel},ca_characteristic=#{cha},ca_name=#{name}
+    </update>
+    
+    <delete id="delete">
+    	delete from chen_camera where ca_no=#{no} and phone=#{phone}
+    </delete>
+</mapper>

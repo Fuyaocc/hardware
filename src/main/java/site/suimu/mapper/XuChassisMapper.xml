@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.XuChassisMapper">
+        <resultMap id="json" type="net.sf.json.JSONObject">
+            <id property="id" column="cs_id"></id>
+            <id property="phone" column="lg_phone"></id>
+            <result property="name" column="cs_name"></result>
+            <result property="brand" column="cs_brand"></result>
+            <result property="price" column="cs_price"></result>
+            <result property="type" column="cs_type"></result>
+            <result property="chassis" column="cs_chassis"></result>
+            <result property="style" column="cs_style"></result>
+            <result property="powersupply" column="cs_power_supply"></result>
+            <result property="gpulimit" column="cs_gpu_limit"></result>
+            <result property="img" column="cs_img"></result>
+
+        </resultMap>
+        <select id="selectAll" parameterType="XuChassis" resultMap="json">
+            select * from xu_chassis where 1=1
+            <choose>
+                <when test="name !=null and name!=''">
+                    and cs_name =#{name}
+                </when>
+                <when test="brand !=null and brand!=''">
+                    and cs_brand =#{brand}
+                </when>
+
+                <when test="price!=null and price!=''">
+                    and cs_price = #{price}
+                </when>
+                <when test="type!=null and type!=''">
+                    and cs_type = #{type}
+                </when>
+                <when test="chassis!=null and chassis!=''">
+                    and cs_chassis = #{chassis}
+                </when>
+                <when test="style!=null and style!=''">
+                    and cs_style = #{style}
+                </when>
+                <when test="powersupply!=null and powersupply!=''">
+                    and cs_power_supply = #{powersupply}
+                </when>
+                <when test="gpulimit!=null and gpulimit!=''">
+                    and cs_gpu_limit = #{gpulimit}
+                </when>
+            </choose>
+        </select>
+
+        <insert id="insertInto" parameterType="XuChassis">
+        insert into xu_chassis (lg_phone,cs_name,cs_brand,cs_price,cs_type,cs_chassis,cs_style,cs_power_supply,cs_gpu_limit,cs_img)
+        values (#{phone},#{name},#{brand},#{price},#{type},#{chassis},#{style},#{powersupply},#{gpulimit},#{img})
+    </insert>
+
+        <update id="update" parameterType="XuChassis">
+        update xu_chassis set lg_phone=#{phone},cs_name=#{name},cs_brand=#{brand},cs_price=#{price},cs_type=#{type},
+        cs_chassis=#{chassis},cs_style=#{style},cs_power_supply=#{powersupply},cs_gpu_limit=#{gpulimit},cs_img=#{img}
+    </update>
+
+        <delete id="delete">
+        delete from xu_chassis where lg_phone=#{phone} and cs_id=#{id}
+    </delete>
+</mapper>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- dtd文件的导入，就是为了下面这些标签。必须导入 -->
+<!--xml 文件名必须和接口名一样-->
+<!--namespace属性的值是有规范的，必须是包名加上类名-->
+<mapper namespace="site.suimu.mapper.ChengSSDMapper">
+    <resultMap id="json" type="net.sf.json.JSONObject">
+        <id property="id" column="ssd_id"></id>
+        <id property="phone" column="lg_phone"></id>
+        <result property="price" column="ssd_price"></result>
+        <result property="storecapacity" column="ssd_store_capacity"></result>
+        <result property="interfacetype" column="ssd_interface_type"></result>
+        <result property="flashmemory" column="ssd_flash_memory"></result>
+        <result property="name" column="ssd_name"></result>
+        <result property="imageurl" column="ssd_image_url"></result>
+        <result property="grade" column="ssd_grade"></result>
+        <result property="link" column="ssd_link"></result>
+        <result property="brand" column="ssd_brand"></result>
+    </resultMap>
+    <select id="selectAll" parameterType="ChengSSD" resultMap="json">
+        select * from cheng_ssd where 1=1
+        <choose>
+            <when test="price !=null and price!=''">
+                and ssd_price =#{price}
+            </when>
+            <when test="storecapacity !=null and storecapacity!=''">
+                and ssd_store_capacity =#{storecapacity}
+            </when>
+
+            <when test="interfacetype!=null and interfacetype!=''">
+                and ssd_interface_type = #{interfacetype}
+            </when>
+            <when test="flashmemory!=null and flashmemory!=''">
+                and ssd_flash_memory = #{flashmemory}
+            </when>
+            <when test="name!=null and name!=''">
+                and ssd_name = #{name}
+            </when>
+            <when test="imageurl!=null and imageurl!=''">
+                and ssd_image_url = #{imageurl}
+            </when>
+            <when test="ssd_grade!=null and grade!=''">
+                and ssd_grade = #{grade}
+            </when>
+            <when test="link!=null and link!=''">
+                and ssd_link = #{link}
+            </when>
+            <when test="brand!=null and brand!=''">
+                and ssd_brand = #{brand}
+            </when>
+
+        </choose>
+    </select>
+
+    <insert id="insertInto" parameterType="ChengSSD">
+        insert into cheng_ssd (lg_phone,ssd_price,ssd_store_capacity,ssd_interface_type,ssd_flash_memory,ssd_name,ssd_image_url,ssd_grade,ssd_link,ssd_brand)
+        values (#{phone},#{price},#{storecapacity},#{interfacetype},#{flashmemory},#{name},#{imageurl},#{grade},#{link},#{brand})
+    </insert>
+
+    <update id="update" parameterType="ChengSSD">
+        update cheng_ssd set lg_phone=#{phone},ssd_price=#{price},ssd_store_capacity=#{storecapacity},ssd_interface_type=#{interfacetype},ssd_flash_memory=#{flashmemory},
+        ssd_name=#{name},ssd_image_url=#{imageurl},ssd_grade=#{grade},ssd_link=#{link},ssd_grade=#{grade},ssd_brand=#{brand}
+    </update>
+
+    <delete id="delete">
+        delete from cheng_ssd where ssd_name=#{name}
+    </delete>
+</mapper>
