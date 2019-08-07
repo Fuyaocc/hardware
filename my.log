@@ -25,3 +25,75 @@
 ==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
 ==> Parameters: 15651665893(String), xky123456(String) 
 <==      Total: 1 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 15651665893(String), xky123456(String) 
+<==      Total: 1 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 6 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 6 
+==>  Preparing: delete from chen_user where user_phone=?  
+==> Parameters: 15605178919(String) 
+<==    Updates: 1 
+==>  Preparing: delete from chen_user where user_phone=?  
+==> Parameters: 123(String) 
+<==    Updates: 1 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 18852071892(String), cj123456(String) 
+<==      Total: 1 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: insert into xu_login (lg_phone,lg_password) val ues(?,?)  
+==> Parameters: null, null 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 4 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 18852071892(String), 123456(String) 
+<==      Total: 1 

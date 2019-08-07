@@ -12,6 +12,6 @@ public interface XuRegisteMapper {
     List<JSONObject> selectOne(@Param("phone") String phone);
 
 
-    @Insert("insert into xu_login (lg_phone,lg_password) val ues(#{phone},#{password})")
+    @Insert("insert into xu_login (lg_phone,lg_password) values (#{phone},#{password})")
     int insertXuLogin(XuLogin xuLogin);
 }

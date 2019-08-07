@@ -2,6 +2,7 @@ package site.suimu.service.impl;
 import org.apache.ibatis.session.SqlSession;
 
 import net.sf.json.JSONObject;
+import org.springframework.stereotype.Service;
 import site.suimu.mapper.ChenUserMapper;
 import site.suimu.pojo.ChenUser;
 import site.suimu.service.ChenUserService;
@@ -10,6 +11,7 @@ import site.suimu.util.MyBatisUtil;
 import javax.annotation.Resource;
 import java.util.List;
 
+@Service
 public class ChenUserServiceImpl implements ChenUserService {
 
 	List<JSONObject> array;
@@ -26,7 +28,7 @@ public class ChenUserServiceImpl implements ChenUserService {
 	}
 	
 	public int delete(String phone) {
-		int result = getMapper().delete(phone);
+		int result = chenusermapper.delete(phone);
 		return result;
 	}
 	

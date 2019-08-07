@@ -11,11 +11,14 @@ import site.suimu.pojo.ChenUser;
 import site.suimu.service.ChenUserService;
 import site.suimu.service.impl.ChenUserServiceImpl;
 
+import javax.annotation.Resource;
+
 @Controller
 @RequestMapping("/chen/user/")
 public class ChenUserController {
-	
-	private ChenUserService cus = new ChenUserServiceImpl();
+
+	@Resource
+	private ChenUserService cus;
 	
 	@RequestMapping("/updateusers")
 	@ResponseBody

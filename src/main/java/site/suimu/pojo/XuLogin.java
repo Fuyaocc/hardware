@@ -28,4 +28,13 @@ public class XuLogin {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "XuLogin{" +
+                "phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", sessionid='" + sessionid + '\'' +
+                '}';
+    }
 }

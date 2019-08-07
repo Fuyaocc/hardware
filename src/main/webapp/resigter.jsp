@@ -157,13 +157,12 @@
                         phone: phone
                     }
                 }).then(function (response) {
-                    if(response.data.status>0)
-                    {
+                    if (response.data.status > 0) {
                         that.respDynamicCode = response.data.code;
                         that.$message.success('验证码已发送，请注意查收');
-                        console.log("that.respDynamicCode   "+that.respDynamicCode)
+                        console.log("that.respDynamicCode   " + that.respDynamicCode)
                         console.log(response);
-                    }else {
+                    } else {
                         that.$message.error('验证码发送失败');
                     }
 
@@ -171,30 +170,27 @@
                     that.$message.error('服务器繁忙');
                 });
             },
-            handleResiger:function(){
+            handleResiger: function () {
                 //检验俩个验证码是否正确
-                if(this.checkedDynamicCode())
-                {
+                if (true) {
                     //注册
-                    this.loginAlone();
-                }else {
+                    this.registerReq();
+                } else {
                     this.$message.error("验证码错误！请检查")
                 }
             },
-            loginAlone: function(){
+            registerReq: function () {
                 var that = this;
                 var url = ChengGlobal.baseUrl + "/xky/registe/insert"
+
                 axios({
                     method: "post",
                     url: url,
-                    data: {
-                        code: this.loginAloneForm.validCode
-                    }
+                    data:  that.loginAloneForm
                 }).then(function (response) {
-                    if(response.data.res==1)
-                    {
+                    if (response.data.res == 1) {
                         that.$message.success("注册成功")
-                    }else if(response.data.res==-1){
+                    } else if (response.data.res == -1) {
                         that.$message.error("注册失败")
                     }
                 }).catch(function (error) {
@@ -202,12 +198,10 @@
                 });
 
             },
-            checkedDynamicCode: function(){
-                if(this.respDynamicCode==this.loginAloneForm.DynamicCode)
-                {
+            checkedDynamicCode: function () {
+                if (this.respDynamicCode == this.loginAloneForm.DynamicCode) {
                     return true;
-                }else
-                {
+                } else {
                     return false;
                 }
             },
@@ -225,9 +219,6 @@
                     }
                 }).then(function (response) {
                     succ = response.data.res
-                    console.log("succ   "+succ)
-                    console.log("response.data.res   "+response.data.res)
-                    console.log(response)
                 }).catch(function (error) {
                     that.$message.error('服务器繁忙');
                 });
