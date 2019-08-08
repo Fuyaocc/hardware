@@ -37,7 +37,4 @@ public class XuRegisteController {
        }
        return jsonObject;
     }
-
-
-
 }

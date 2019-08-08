@@ -97,3 +97,6 @@
 ==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
 ==> Parameters: 18852071892(String), 123456(String) 
 <==      Total: 1 
+==>  Preparing: insert into chen_user (user_phone,user_nickname,user_level,user_sex,user_location,user_birth,user_email) values (?,?,?,?,?,?,?)  
+==> Parameters: 182512806333(String), null, 0(Integer), null, null, null, null 
+<==    Updates: 1 

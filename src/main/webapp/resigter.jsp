@@ -188,6 +188,7 @@
                     url: url,
                     data:  that.loginAloneForm
                 }).then(function (response) {
+                    that.$message.success("注册成功")
                     if (response.data.res == 1) {
                         that.$message.success("注册成功")
                     } else if (response.data.res == -1) {

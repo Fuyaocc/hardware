@@ -34,13 +34,13 @@ public class ChenUserServiceImpl implements ChenUserService {
 	
 	public String update(ChenUser chenuser)
 	{
-		int result = getMapper().update(chenuser);
+		int result = chenusermapper.update(chenuser);
 		return result>0?UPDATE_SUCCESS:DELETE_FAILED;
 	}
 	
 	public String insert(ChenUser chenuser)
 	{
-		int result = getMapper().insert(chenuser);
+		int result = chenusermapper.insert(chenuser);
 		return result>0?INSERT_SUCCESS:INSERT_FAILED;
 	}
 

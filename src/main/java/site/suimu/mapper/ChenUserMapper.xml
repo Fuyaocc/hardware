@@ -22,8 +22,8 @@
     </select>
 
     <insert id="insert" parameterType="ChenUser">
-    	insert into chen_user (user_phone,user_nickname,user_level,user_sex,user_location,user_birth,user_email) 
-    	values(#{phone},#{nickname},#{level},#{sex},#{location},#{birth},#{email})
+    	insert into chen_user (user_phone,user_nickname,user_level,user_sex,user_location,user_birth,user_email)
+    	values (#{phone},#{nickname},#{level},#{sex},#{location},#{birth},#{email})
     </insert>
     
     <update id="update" parameterType="ChenUser">
