@@ -19,7 +19,7 @@
 <nav class="navbar navbar-expand-sm bg-light navbar-light">
     <div class="container">
         <!-- Brand -->
-        <a class="navbar-brand" href="#">Logo</a>
+        <a class="navbar-brand" href="${pageContext.request.contextPath}">Logo</a>
         <!-- Links -->
         <ul class="navbar-nav mr-auto">
 
