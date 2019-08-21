@@ -100,3 +100,29 @@
 ==>  Preparing: insert into chen_user (user_phone,user_nickname,user_level,user_sex,user_location,user_birth,user_email) values (?,?,?,?,?,?,?)  
 ==> Parameters: 182512806333(String), null, 0(Integer), null, null, null, null 
 <==    Updates: 1 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 18852071892(String), 123456(String) 
+<==      Total: 1 
+==>  Preparing: insert into qian_Memory (user_phone,Mem_name,Mem_brand,Mem_price, Mem_type,Mem_suitType,Mem_account,Men_MHZ,Mem_aircooling,Mem_img) values(?,?,?,?,?,?,?,?,?,?)  
+==> Parameters: 登录(String), (String), ww(String), ww(String), ww(String), www(String), null, null, wwww(String), (String) 
+==>  Preparing: select * from cheng_cpu where 1=1  
+==> Parameters:  
+<==      Total: 0 
+==>  Preparing: select * from xu_login where lg_phone=? and lg_password=?  
+==> Parameters: 18852071892(String), 123456(String) 
+<==      Total: 1 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 8 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 8 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 8 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 8 
+==>  Preparing: select * from chen_user  
+==> Parameters:  
+<==      Total: 8 

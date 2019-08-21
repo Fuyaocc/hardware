@@ -1,4 +1,5 @@
 package site.suimu.service.impl;
+
 import org.apache.ibatis.session.SqlSession;
 
 import net.sf.json.JSONObject;
@@ -14,45 +15,38 @@ import java.util.List;
 @Service
 public class ChenUserServiceImpl implements ChenUserService {
 
-	List<JSONObject> array;
-	JSONObject jsonObject=new JSONObject();
-	SqlSession session;
-	@Resource
-	ChenUserMapper chenusermapper;
-	int status = 0;
-	
-	private ChenUserMapper getMapper() {
-		session =  MyBatisUtil.getSession();
-		chenusermapper = session.getMapper(ChenUserMapper.class);
-		return chenusermapper;
-	}
-	
-	public int delete(String phone) {
-		int result = chenusermapper.delete(phone);
-		return result;
-	}
-	
-	public String update(ChenUser chenuser)
-	{
-		int result = chenusermapper.update(chenuser);
-		return result>0?UPDATE_SUCCESS:DELETE_FAILED;
-	}
-	
-	public String insert(ChenUser chenuser)
-	{
-		int result = chenusermapper.insert(chenuser);
-		return result>0?INSERT_SUCCESS:INSERT_FAILED;
-	}
+    List<JSONObject> array;
+    JSONObject jsonObject = new JSONObject();
+    @Resource
+    ChenUserMapper chenusermapper;
 
-	public JSONObject select(String phone) {
-		jsonObject = getMapper().select(phone);
-		return jsonObject;
-	}
 
-	@Override
-	public JSONObject selAll() {
-		array = getMapper().selectAll();
-		jsonObject.put("list",array);
-		return jsonObject;
-	}
+
+    public int delete(String phone) {
+        int result = chenusermapper.delete(phone);
+        return result;
+    }
+
+    public String update(ChenUser chenuser) {
+		System.out.println(chenuser);
+        int result = chenusermapper.update(chenuser);
+        return result > 0 ? UPDATE_SUCCESS : UPDATE_FAILED;
+    }
+
+    public String insert(ChenUser chenuser) {
+        int result = chenusermapper.insert(chenuser);
+        return result > 0 ? INSERT_SUCCESS : INSERT_FAILED;
+    }
+
+    public JSONObject select(String phone) {
+        jsonObject = chenusermapper.select(phone);
+        return jsonObject;
+    }
+
+    @Override
+    public JSONObject selAll() {
+        array = chenusermapper.selectAll();
+        jsonObject.put("list", array);
+        return jsonObject;
+    }
 }

@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
         
 <mapper namespace="site.suimu.mapper.ChenUserMapper">
-	<resultMap id="json" type="net.sf.json.JSONObject">
+	<resultMap id="json" type="site.suimu.pojo.ChenUser">
         <id property="phone" column="user_phone"></id>
         <result property="nickname" column="user_nickname"></result>
         <result property="location" column="user_location"></result>
@@ -27,7 +27,7 @@
     </insert>
     
     <update id="update" parameterType="ChenUser">
-    	update chen_user set user_phone=#{phone},user_nickname=#{nickname},user_level=#{level},user_sex=#{sex},
+    	update chen_user set user_phone=#{phone},user_nickname=#{nickname},user_sex=#{sex},
     			user_location=#{location},user_birth=#{birth},user_email=#{email} where user_phone=#{phone}
     </update>
     

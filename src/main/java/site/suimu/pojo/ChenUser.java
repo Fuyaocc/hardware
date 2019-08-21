@@ -60,4 +60,16 @@ public class ChenUser {
         this.sex = sex;
     }
 
+    @Override
+    public String toString() {
+        return "ChenUser{" +
+                "phone='" + phone + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", location='" + location + '\'' +
+                ", birth='" + birth + '\'' +
+                ", email='" + email + '\'' +
+                ", sex='" + sex + '\'' +
+                ", level=" + level +
+                '}';
+    }
 }

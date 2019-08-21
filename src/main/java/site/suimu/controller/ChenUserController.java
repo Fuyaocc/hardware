@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import net.sf.json.JSONObject;
 import site.suimu.pojo.ChenUser;
 import site.suimu.service.ChenUserService;
-import site.suimu.service.impl.ChenUserServiceImpl;
 
 import javax.annotation.Resource;
 
 @Controller
-@RequestMapping("/chen/user/")
+@RequestMapping("/chen/user")
 public class ChenUserController {
 
 	@Resource
-	private ChenUserService cus;
+	ChenUserService cus;
 	
-	@RequestMapping("/updateusers")
+	@RequestMapping("update")
 	@ResponseBody
 	public String Update(@RequestBody ChenUser user)
 	{
