@@ -226,7 +226,7 @@
         $("#insertForm").click(function () {
             var url = ChengGlobal.baseUrl + "/cheng/cpu/add";
             var postData = {
-                phone: ChengGlobal.currentUser.phone,
+                phone: localStorage.getItem("login"),
                 name: "",
                 brand: $("#brand").val(),
                 price: $("#price").val(),
@@ -263,7 +263,7 @@
         data: function () {
             return {
                 reqdata: {
-                    phone: ChengGlobal.currentUser.phone,
+                    phone: localStorage.getItem("login"),
                     name: "",
                     brand: "",
                     price: "",

@@ -225,7 +225,7 @@
             console.log("aaaa")
             var url = ChengGlobal.baseUrl + "/qian/mouse/add";
             var postData = {
-                phone: ChengGlobal.currentUser.phone,
+                phone: localStorage.getItem("login"),
                 name: "",
                 brand: $("#brand").val(),
                 price: $("#price").val(),
